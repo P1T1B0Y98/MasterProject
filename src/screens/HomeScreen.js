@@ -2,8 +2,7 @@ import * as React from 'react';
 import { StyleSheet, View, StatusBar } from 'react-native';
 import { Button, Title,  } from 'react-native-paper';
 import { Icon } from '@rneui/themed';
-import AppBarComponent from '../components/AppBarComponent';
-import { useNavigation } from '@react-navigation/native';
+import { useAuth } from '../containers/Auth';
  
 import {
   StyledButton,
@@ -12,19 +11,12 @@ import {
   PageTitle,
   StatusBarStyle,
   StyledContainer,
-  ExtraText
+  ExtraText,
+  ExtraView
 } from '../components/styles';
 export const HomeScreen = () => {
+  const { currentUser, onLogout, refetch } = useAuth();
 
-  const navigation = useNavigation();
-
-  const handleLoginPress = () => {
-    navigation.navigate('Login');
-  };
-
-  const handleRegisterPress = () => {
-    navigation.navigate('Register');
-  };
 
   return (
      <StyledContainer>
@@ -33,6 +25,9 @@ export const HomeScreen = () => {
       <PageTitle>MyHealthAssessment</PageTitle>
       <ExtraText>Welcome to your personal health app</ExtraText>
       <ExtraText> To be continued...</ExtraText>
+      <StyledButton onPress={onLogout}>
+        <ButtonText>Logout</ButtonText>
+      </StyledButton>
     </StyledContainer>
   );
 }

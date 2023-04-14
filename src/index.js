@@ -1,15 +1,17 @@
-import React from 'react';
-import { View, Text } from 'react-native';
+import React, { useRef } from 'react';
 import { ApolloProvider } from '@apollo/client';
 import client from './apollo-client';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Auth, useAuth } from './containers/Auth';
+import { AuthNavigator, UnauthNavigator } from './navigation';
 import * as Screens from './screens';
+import { StyledContainer } from './components/styles';
 
 const Stack = createNativeStackNavigator();
 
 export default function App() {
+  containerRef = useRef();
   return (
     <ApolloProvider client={client}>
       <Auth>
@@ -24,20 +26,11 @@ function AuthWrapper() {
 
   return (
     <NavigationContainer>
-      <Stack.Navigator>
-        {isAuthenticated ? (
-          <>
-            <Stack.Screen name="Home" component={Screens.HomeScreen} />
-            {/* Other authenticated screens */}
-          </>
-        ) : (
-          <>
-            <Stack.Screen name="Login" component={Screens.LoginScreen} />
-            <Stack.Screen name="Register" component={Screens.RegisterScreen} />
-            {/* Other unauthenticated screens */}
-          </>
-        )}
-      </Stack.Navigator>
+        {isAuthenticated ? 
+          <AuthNavigator />
+        : 
+          <UnauthNavigator />
+        }
     </NavigationContainer>
   );
 }
