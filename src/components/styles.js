@@ -126,7 +126,7 @@ export const Line = styled.View`
 
 export const ExtraView = styled.View`
     justify-content: center;
-    flex-direction: flex-row;
+    flex-direction: row;
     align-items: center;
     padding: 25px;
 `;

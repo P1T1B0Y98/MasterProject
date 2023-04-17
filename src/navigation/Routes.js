@@ -6,4 +6,5 @@ export const Routes = {
     Drawer: 'Drawer',
     Register: 'Register',
     App: 'App',
+    Profile: 'Profile',
 }

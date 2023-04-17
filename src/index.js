@@ -5,6 +5,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Auth, useAuth } from './containers/Auth';
 import { AuthNavigator, UnauthNavigator } from './navigation';
+import 'react-native-gesture-handler';
 import * as Screens from './screens';
 import { StyledContainer } from './components/styles';
 

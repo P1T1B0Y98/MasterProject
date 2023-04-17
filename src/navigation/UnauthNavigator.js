@@ -30,7 +30,7 @@ export const UnauthNavigator = () => {
   }
 
   return (
-    <Stack.Navigator>
+    <Stack.Navigator screenOptions={{headerShown:false}}>
       <Stack.Screen name={Routes.Landing} component={Screens.Landing} />
       <Stack.Screen name={Routes.Register} component={Screens.RegisterScreen} />
       <Stack.Screen name={Routes.Login} component={Screens.LoginScreen} />
