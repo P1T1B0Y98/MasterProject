@@ -58,7 +58,6 @@ export const LoginScreen = () => {
         <Formik
           initialValues={{ email: "", password: "" }}
           onSubmit={(values) => {
-            console.log(values);
             onLogin(values);
           }}
         >

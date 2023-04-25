@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { View, Text, Image, TextInput } from "react-native";
 import Constants from "expo-constants";
+import { Dimensions } from "react-native";
 
 const StatusBarHeight = Constants.statusBarHeight;
 
@@ -22,8 +23,8 @@ export const ScrollContainer = styled.ScrollView`
 `;
 export const StyledContainer = styled.View`
     flex: 1;
-    padding: 25px;
-    padding-top: ${StatusBarHeight + 30}px;
+    width: 100%;
+    height: 100%;
     background-color: ${Colors.primary};
 `;
 
@@ -86,6 +87,21 @@ export const LeftIcon = styled.View`
     z-index: 1;
 `;
 
+export const leftText = styled.Text`
+    left: 15px;
+    top: 25px;
+    position: absolute;
+    aliginItems: center;
+    z-index: 1;
+`;
+
+export const RightText = styled.Text`
+    right: 15px;
+    top: 25px;
+    position: absolute;
+    z-index: 1;
+`;
+
 export const RightIcon = styled.TouchableOpacity`
     right: 15px;
     top: 25px;
@@ -95,7 +111,18 @@ export const RightIcon = styled.TouchableOpacity`
 
 export const StatusBarStyle = styled.StatusBar``;
 
-
+export const StyledButtonRight = styled.TouchableOpacity`
+    right: 15px;
+    top: 25px;
+    position: absolute;
+    z-index: 1;
+    background-color: ${Colors.brand};
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    margin-vertical: 5px;
+    height: 20px;
+`;
 
 export const StyledButton = styled.TouchableOpacity`
     padding: 15px;
@@ -105,6 +132,16 @@ export const StyledButton = styled.TouchableOpacity`
     border-radius: 5px;
     margin-vertical: 5px;
     height: 60px;
+`;
+
+export const SmallButton = styled.TouchableOpacity`
+    padding: 5px;
+    background-color: ${Colors.white};
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    margin-vertical: 5px;
+    height: 30px;
 `;
 
 export const ButtonText = styled.Text`
@@ -136,6 +173,13 @@ export const ExtraText = styled.Text`
     align-items: center;
     color: ${tertiary};
     font-size: 15px;
+`;
+
+export const Header = styled.View`
+    width: 100%;
+    height: 60px;
+    alignSelf: stretch;
+    background-color: ${Colors.primary};
 `;
 
 export const TextLink = styled.TouchableOpacity`

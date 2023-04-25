@@ -14,7 +14,6 @@ const AuthContext = createContext({
   currentUser: null,
   refetch: () => false,
   onLogout: () => false,
-  isAuthenticated: false,
   authenticate: () => false,
   setToken: (token) => false,
   createToken: (token) => {},
@@ -28,31 +27,31 @@ export const getToken = async () => await AsyncStorage.getItem(keyToken);
 
 export const Auth = (props) => {
   const [accessToken, setAccessToken] = useState(null);
-  const [profile, {loading, data, refetch}] = useLazyQuery(AUTH_ME);
+  const [profile, {loading, data, refetch}] = useLazyQuery(AUTH_ME, {
+    onCompleted: (data) => {
+      console.log("data:", data.result);
+    },
+    onError: (error) => {
+      console.log("error:", error);
+    }
+  });
   const [_createToken] = useMutation(MUTATION_PUSH_NOTIFICATION);
   const createToken = useCallback((token) => _createToken({ variables: { token } }), [])
-
   useEffect(() => {
     if (profile && typeof profile === 'function') {
       profile();
-      console.log("profile:", profile);
     }
   }, [accessToken])
 
   const setToken = async (token) => {
-    console.log("hello");
-    console.log("token:", token)
     try {
       if (token) {
         await AsyncStorage.setItem(keyToken, token);
         console.log("keytoken:", keyToken)
       } else {
-        console.log("hello2")
         await AsyncStorage.removeItem(keyToken);
       }
-      console.log("Hello")
       setAccessToken(token);
-      console.info('Set token:', token);
       await profile();
     } catch (error) {
       setAccessToken(null);
@@ -64,6 +63,7 @@ export const Auth = (props) => {
     let token;
     try {
       token = await getToken();
+
       if (token) {
         await profile();
       }
@@ -79,7 +79,6 @@ export const Auth = (props) => {
     setToken(null);
   });
 
-  console.log("Her er ett barn", props.children);
   return (
     <>
     <AuthContext.Provider

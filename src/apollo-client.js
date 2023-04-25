@@ -11,10 +11,8 @@ const authLink = setContext(async (_, { headers }) => {
 
   try {
     accessToken = await getToken();
-    console.log(accessToken);
   } catch (e) {
     // Ignore error
-    console.log("Cannor find access token")
   }
 
   return ({

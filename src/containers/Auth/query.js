@@ -7,15 +7,7 @@ export const AUTH_ME = gql `
       authenticationUid
       fullName
       firstName
-      lastName
       email
-      roles
-      notification
-      avatars {
-        id
-        name
-        publicUrl
-      }
     }
   }
 `;
